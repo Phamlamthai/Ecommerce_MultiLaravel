@@ -1,109 +1,234 @@
- <div class="vertical-menu">
-
-                <div data-simplebar class="h-100">
-
-                    <!-- User details -->
-                
-
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-                        <!-- Left Menu Start -->
-                        <ul class="metismenu list-unstyled" id="side-menu">
-                            <li class="menu-title">Menu</li>
-
-                            <li>
-                                <a href="index.html" class="waves-effect">
-                                    <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
-                                    <span>Dashboard</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="calendar.html" class=" waves-effect">
-                                    <i class="ri-calendar-2-line"></i>
-                                    <span>Calendar</span>
-                                </a>
-                            </li>
-                
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-mail-send-line"></i>
-                                    <span>Email</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Read Email</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-layout-3-line"></i>
-                                    <span>Layouts</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li>
-                                        <a href="javascript: void(0);" class="has-arrow">Vertical</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-dark-sidebar.html">Dark Sidebar</a></li>
-                                            <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
-                                            <li><a href="layouts-icon-sidebar.html">Icon Sidebar</a></li>
-                                            <li><a href="layouts-boxed.html">Boxed Layout</a></li>
-                                            <li><a href="layouts-preloader.html">Preloader</a></li>
-                                            <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li>
-                                        <a href="javascript: void(0);" class="has-arrow">Horizontal</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-horizontal.html">Horizontal</a></li>
-                                            <li><a href="layouts-hori-topbar-light.html">Topbar light</a></li>
-                                            <li><a href="layouts-hori-boxed-width.html">Boxed width</a></li>
-                                            <li><a href="layouts-hori-preloader.html">Preloader</a></li>
-                                            <li><a href="layouts-hori-colored-header.html">Colored Header</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="menu-title">Pages</li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-account-circle-line"></i>
-                                    <span>Authentication</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="auth-login.html">Login</a></li>
-                                    <li><a href="auth-register.html">Register</a></li>
-                                    <li><a href="auth-recoverpw.html">Recover Password</a></li>
-                                    <li><a href="auth-lock-screen.html">Lock Screen</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-profile-line"></i>
-                                    <span>Utility</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="pages-starter.html">Starter Page</a></li>
-                                    <li><a href="pages-timeline.html">Timeline</a></li>
-                                    <li><a href="pages-directory.html">Directory</a></li>
-                                    <li><a href="pages-invoice.html">Invoice</a></li>
-                                    <li><a href="pages-404.html">Error 404</a></li>
-                                    <li><a href="pages-500.html">Error 500</a></li>
-                                </ul>
-                            </li>
-
-                           
-
-                            
-                         
-
-                        </ul>
-                    </div>
-                    <!-- Sidebar -->
+<div class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header">
+        <div>
+            <img src="{{ asset('adminbackend/assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
+        </div>
+        <div>
+            <h4 class="logo-text">Admin</h4>
+        </div>
+        <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+        </div>
+    </div>
+    <!--navigation-->
+    <ul class="metismenu" id="menu">
+        <li>
+            <a href="{{route('admin.dashboard')}}" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
-            </div>
+                <div class="menu-title">Dashboard</div>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">Brand</div>
+            </a>
+            <ul>
+                {{-- @if(Auth::user()->can('brand.list')) --}}
+                <li> <a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>All Brand</a>
+                </li>
+                {{-- @endif --}}
+                {{-- @if(Auth::user()->can('brand.add')) --}}
+                <li> <a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>Add Brand </a>
+                </li>
+                {{-- @endif --}}
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-category'></i>
+                </div>
+                <div class="menu-title">Category</div>
+            </a>
+            <ul>
+                {{-- @if(Auth::user()->can('brand.list')) --}}
+                <li> <a href="{{ route('all.category') }}"><i class="bx bx-right-arrow-alt"></i>All Category</a>
+                </li>
+                {{-- @endif --}}
+                {{-- @if(Auth::user()->can('brand.add')) --}}
+                <li> <a href="{{ route('add.category') }}"><i class="bx bx-right-arrow-alt"></i>Add Category </a>
+                </li>
+                {{-- @endif --}}
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='lni lni-codepen'></i>
+                </div>
+                <div class="menu-title">SubCategory</div>
+            </a>
+            <ul>
+                {{-- @if(Auth::user()->can('brand.list')) --}}
+                <li> <a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All SubCategory</a>
+                </li>
+                {{-- @endif --}}
+                {{-- @if(Auth::user()->can('brand.add')) --}}
+                <li> <a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory </a>
+                </li>
+                {{-- @endif --}}
+            </ul>
+        </li>
+
+         <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='lni lni-fresh-juice'></i>
+                </div>
+                <div class="menu-title">Product Manage</div>
+            </a>
+            <ul>
+                {{-- @if(Auth::user()->can('brand.list')) --}}
+                <li> <a href="{{ route('all.product') }}"><i class="bx bx-right-arrow-alt"></i>All Product</a>
+                </li>
+                {{-- @endif --}}
+                {{-- @if(Auth::user()->can('brand.add')) --}}
+                <li> <a href="{{ route('add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add Product </a>
+                </li>
+                {{-- @endif --}}
+            </ul>
+        </li>
+
+        <li class="menu-label">UI Elements</li>
+        {{-- <li>
+            <a href="widgets.html">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">Widgets</div>
+            </a>
+        </li> --}}
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">eCommerce</div>
+            </a>
+            <ul>
+                <li> <a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>Products</a>
+                </li>
+                <li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Product
+                        Details</a>
+                </li>
+                <li> <a href="ecommerce-add-new-products.html"><i class="bx bx-right-arrow-alt"></i>Add New
+                        Products</a>
+                </li>
+                <li> <a href="ecommerce-orders.html"><i class="bx bx-right-arrow-alt"></i>Orders</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class='lni lni-gallery'></i>
+                </div>
+                <div class="menu-title">Slider Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('all.slider')}}"><i class="bx bx-right-arrow-alt"></i>All Slider</a>
+                </li>
+                <li> <a href="{{route('add.slider')}}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-image"></i>
+                </div>
+                <div class="menu-title">Banner Manage</div>
+            </a>
+            <ul>
+                {{-- @if(Auth::user()->can('ads.list')) --}}
+                <li> <a href="{{ route('all.banner') }}"><i class="bx bx-right-arrow-alt"></i>All Banner</a>
+                </li>
+                {{-- @endif --}}
+                {{-- @if(Auth::user()->can('ads.add')) --}}
+                <li> <a href="{{ route('add.banner') }}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
+                </li>
+                {{-- @endif --}}
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-codepen"></i>
+                </div>
+                <div class="menu-title">Coupon System</div>
+            </a>
+            <ul>
+                {{-- @if(Auth::user()->can('ads.list')) --}}
+                <li> <a href="{{ route('all.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All Coupon</a>
+                </li>
+                {{-- @endif --}}
+                {{-- @if(Auth::user()->can('ads.add')) --}}
+                <li> <a href="{{ route('add.coupon') }}"><i class="bx bx-right-arrow-alt"></i>Add Coupon</a>
+                </li>
+                {{-- @endif --}}
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-repeat"></i>
+                </div>
+                <div class="menu-title">Content</div>
+            </a>
+            <ul>
+                <li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>Grid System</a>
+                </li>
+                <li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>Typography</a>
+                </li>
+                <li> <a href="content-text-utilities.html"><i class="bx bx-right-arrow-alt"></i>Text
+                        Utilities</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"> <i class="bx bx-donate-blood"></i>
+                </div>
+                <div class="menu-title">Icons</div>
+            </a>
+            <ul>
+                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Line Icons</a>
+                </li>
+                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Boxicons</a>
+                </li>
+                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Feather Icons</a>
+                </li>
+            </ul>
+        </li>
+
+
+
+
+
+        <li class="menu-label">Charts & Maps</li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-line-chart"></i>
+                </div>
+                <div class="menu-title">Charts</div>
+            </a>
+            <ul>
+                <li> <a href="charts-apex-chart.html"><i class="bx bx-right-arrow-alt"></i>Apex</a>
+                </li>
+                <li> <a href="charts-chartjs.html"><i class="bx bx-right-arrow-alt"></i>Chartjs</a>
+                </li>
+                <li> <a href="charts-highcharts.html"><i class="bx bx-right-arrow-alt"></i>Highcharts</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-label">Others</li>
+
+        <li>
+            <a href="https://themeforest.net/user/codervent" target="_blank">
+                <div class="parent-icon"><i class="bx bx-support"></i>
+                </div>
+                <div class="menu-title">Support</div>
+            </a>
+        </li>
+    </ul>
+    <!--end navigation-->
+</div>

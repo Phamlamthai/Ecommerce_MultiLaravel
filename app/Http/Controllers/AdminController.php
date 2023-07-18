@@ -9,96 +9,80 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-     public function destroy(Request $request)
-    {
+    public function AdminDashboard(){
+        return view('admin.index');
+    }
+    public function AdminLogin(){
+        return view('admin.admin_login');
+    }
+    public function AdminLogout(Request $request){
         Auth::guard('web')->logout();
-
-        $request->session()->invalidate();
-
+        $request ->session()->invalidate();
         $request->session()->regenerateToken();
 
-        $notification = array(
-            'message' => 'User Logout Successfully', 
-            'alert-type' => 'success'
-        );
+        return redirect('/admin/login');
+    }
+    public function AdminProfile(){
 
-        return redirect('/login')->with($notification);
-    } // End Method 
-
-
-    public function Profile(){
         $id = Auth::user()->id;
         $adminData = User::find($id);
         return view('admin.admin_profile_view',compact('adminData'));
 
-    }// End Method 
+    }
+    public function AdminProfileStore(Request $request){
 
-
-    public function EditProfile(){
-
-        $id = Auth::user()->id;
-        $editData = User::find($id);
-        return view('admin.admin_profile_edit',compact('editData'));
-    }// End Method 
-
-    public function StoreProfile(Request $request){
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
         $data->email = $request->email;
-        $data->username = $request->username;
+        $data->phone = $request->phone;
+        $data->address = $request->address; 
 
-        if ($request->file('profile_image')) {
-           $file = $request->file('profile_image');
 
-           $filename = date('YmdHi').$file->getClientOriginalName();
-           $file->move(public_path('upload/admin_images'),$filename);
-           $data['profile_image'] = $filename;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('upload/admin_images/'.$data->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'),$filename);
+            $data['photo'] = $filename;
         }
+
         $data->save();
 
         $notification = array(
-            'message' => 'Admin Profile Updated Successfully', 
-            'alert-type' => 'info'
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success'
         );
 
-        return redirect()->route('admin.profile')->with($notification);
+        return redirect()->back()->with($notification);
 
-    }// End Method
+    } // End Mehtod 
 
 
-    public function ChangePassword(){
-
+    public function AdminChangePassword(){
         return view('admin.admin_change_password');
+    } // End Mehtod 
 
-    }// End Method
 
-
-    public function UpdatePassword(Request $request){
-
-        $validateData = $request->validate([
-            'oldpassword' => 'required',
-            'newpassword' => 'required',
-            'confirm_password' => 'required|same:newpassword',
-
+    public function AdminUpdatePassword(Request $request){
+        // Validation 
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed', 
         ]);
 
-        $hashedPassword = Auth::user()->password;
-        if (Hash::check($request->oldpassword,$hashedPassword )) {
-            $users = User::find(Auth::id());
-            $users->password = bcrypt($request->newpassword);
-            $users->save();
-
-            session()->flash('message','Password Updated Successfully');
-            return redirect()->back();
-        } else{
-            session()->flash('message','Old password is not match');
-            return redirect()->back();
+        // Match The Old Password
+        if (!Hash::check($request->old_password, auth::user()->password)) {
+            return back()->with("error", "Old Password Doesn't Match!!");
         }
 
-    }// End Method
+        // Update The new password 
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
 
+        ]);
+        return back()->with("status", " Password Changed Successfully");
 
-
+    } // End Mehtod 
 }
  

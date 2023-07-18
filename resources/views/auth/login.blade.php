@@ -1,108 +1,115 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 
-    <head>
-        
-        <meta charset="utf-8" />
-        <title>Login | Admin </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesdesign" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
+<head>
+    <meta charset="utf-8" />
+    <title>Login - Easy Shop Online Store </title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
 
-        <!-- Bootstrap Css -->
-        <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+ <!-- Toaster -->
+ <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+ <!-- Toaster   -->
+</head>
 
-         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+<body>
+   
+    <!-- Header  -->
+    @include('frontend.body.header')
+   <!-- End Header  -->
 
-    </head>
-
-    <body class="auth-body-bg">
-        <div class="bg-overlay"></div>
-        <div class="wrapper-page">
-            <div class="container-fluid p-0">
-                <div class="card">
-                    <div class="card-body">
-
-                        <div class="text-center mt-4">
-                            <div class="mb-3">
-                                <a href="index.html" class="auth-logo">
-                                    <img src="{{ asset('backend/assets/images/logo-dark.png') }}" height="30" class="logo-dark mx-auto" alt="">
-                                    <img src="{{ asset('backend/assets/images/logo-light.png') }}" height="30" class="logo-light mx-auto" alt="">
-                                </a>
+    <main class="main pages">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                    <span></span> My Account
+                </div>
+            </div>
+        </div>
+        <div class="page-content pt-150 pb-150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
+                        <div class="row">
+                            <div class="col-lg-6 pr-30 d-none d-lg-block">
+                                <img class="border-radius-15" src="{{asset('frontend/assets/imgs/page/login-1.png')}}" alt="" />
+                            </div>
+                            <div class="col-lg-6 col-md-8">
+                                <div class="login_wrap widget-taber-content background-white">
+                                    <div class="padding_eight_all bg-white">
+                                        <div class="heading_s1">
+                                            <h1 class="mb-5">Login</h1>
+                                            <p class="mb-30">Don't have an account? <a href="{{route('register')}}">Create here</a></p>
+                                        </div>
+                                        <form method="POST" action="{{ route('login') }}">
+                                        @csrf
+                                            <div class="form-group">
+                                                <input type="text" required="" name="username" id="username" placeholder="Username or Email *" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input required="" type="password" name="password" id="password" placeholder="Your password *" />
+                                            </div>
+                        
+                                            <div class="login_footer form-group mb-50">
+                                                <div class="chek-form">
+                                                    <div class="custome-checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
+                                                        <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
+                                                    </div>
+                                                </div>
+                                                <a class="text-muted" href="{{route('password.request')}}">Forgot password?</a>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-    
-                        <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
-    
-                        <div class="p-3">
-     
-
- <form class="form-horizontal mt-3" method="POST" action="{{ route('login') }}">
-            @csrf
-
-        <div class="form-group mb-3 row">
-            <div class="col-12">
-                <input class="form-control" id="username" name="username" type="text" required="" placeholder="Username">
-            </div>
-        </div>
-
-        <div class="form-group mb-3 row">
-            <div class="col-12">
-                <input class="form-control" id="password" name="password" type="password" required="" placeholder="Password">
-            </div>
-        </div>
-
-        <div class="form-group mb-3 row">
-            <div class="col-12">
-                <div class="custom-control custom-checkbox">
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group mb-3 text-center row mt-3 pt-1">
-            <div class="col-12">
-                <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Log In</button>
-            </div>
-        </div>
-
-        <div class="form-group mb-0 row mt-2">
-            <div class="col-sm-7 mt-3">
-                <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
-            </div>
-            <div class="col-sm-5 mt-3">
-                <a href="{{ route('register') }}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
-            </div>
-        </div>
-    </form>
-                        </div>
-                        <!-- end -->
                     </div>
-                    <!-- end cardbody -->
                 </div>
-                <!-- end card -->
             </div>
-            <!-- end container -->
         </div>
-        <!-- end -->
+    </main>
 
-        <!-- JAVASCRIPT -->
-        <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-        <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-        <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
+    @include('frontend.body.footer')
 
-        <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
-         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/slick.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/jquery.syotimer.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/waypoints.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/wow.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/magnific-popup.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/select2.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/counterup.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/images-loaded.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/isotope.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/scrollup.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/jquery.vticker-min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+    <!-- Template  JS -->
+    <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
+    <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
  @if(Session::has('message'))
@@ -126,6 +133,6 @@
  }
  @endif 
 </script>
+</body>
 
-    </body>
 </html>
