@@ -168,6 +168,26 @@
         </li>
 
         <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-codepen"></i>
+                </div>
+                <div class="menu-title">Shipping Area</div>
+            </a>
+            <ul>
+                {{-- @if(Auth::user()->can('ads.list')) --}}
+                <li> <a href="{{ route('all.division') }}"><i class="bx bx-right-arrow-alt"></i>All Division</a>
+                </li>
+                {{-- @endif --}}
+                {{-- @if(Auth::user()->can('ads.add')) --}}
+                <li> <a href="{{ route('all.district') }}"><i class="bx bx-right-arrow-alt"></i>All Districts</a>
+                </li>
+                {{-- @endif --}}
+                <li> <a href="{{ route('all.state') }}"><i class="bx bx-right-arrow-alt"></i>All States</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bx bx-repeat"></i>
                 </div>
