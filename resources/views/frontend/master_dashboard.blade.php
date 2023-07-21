@@ -202,6 +202,7 @@
                 , size: size
                 , quantity: quantity
                 , product_name: product_name
+                , vendor: vendor
             }
             , url: "/cart/data/store/" + id
             , success: function(data) {

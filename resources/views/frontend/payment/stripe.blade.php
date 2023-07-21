@@ -145,7 +145,7 @@ Stripe Payment
 
 
                     <form action="{{ route('stripe.order') }}" method="post" id="payment-form">
-                        {{-- {{ route('stripe.order') }} --}}
+                        
                         @csrf
                         <div class="form-row">
                             <label for="card-element">
@@ -187,7 +187,7 @@ Stripe Payment
 
 <script type="text/javascript">
     // Create a Stripe client.
-    var stripe = Stripe('pk_test_51IUTWzALc6pn5BvMAUegqRHV0AAokjG7ZuV6RWcj5rxB9KCAwamgtWpw9T4maGAe34WmDkD6LSn1Yge3nzex6gYk004pILHsNh');
+    var stripe = Stripe('pk_test_51Mo8X4HHbWAM4efFxxcGtdOcsAJGldKWm6gT6IkQLLwaEy5aMkrxUfljPtEbeshAGHcP4oZIu3y2PgYSYAKsBrse0026LWWdIA');
     // Create an instance of Elements.
     var elements = stripe.elements();
     // Custom styling can be passed to options when creating an Element.
