@@ -24,7 +24,7 @@ class StripeController extends Controller
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
         }else{
-            $total_amount = round(Cart::total());
+            $total_amount = round((int)Cart::total());
         }
 
         \Stripe\Stripe::setApiKey('sk_test_51Mo8X4HHbWAM4efFYLzT6CzbWiADEaZT2vFMiesmGkOPxEPZexjYnEfUGmU3griknJL841Bk8Ip045Uwe1AESMU200BbxrXLFP');
@@ -128,7 +128,7 @@ class StripeController extends Controller
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
         }else{
-            $total_amount = round(Cart::total());
+            $total_amount = round((int)Cart::total());
         }
 
         

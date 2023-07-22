@@ -18,11 +18,11 @@
 </head>
 
 <body>
-    
- 
+
+
     <!-- Header  -->
     @include('frontend.body.header')
-   <!-- End Header  -->
+    <!-- End Header  -->
 
 
     <main class="main pages">
@@ -47,20 +47,23 @@
                                             <p class="mb-30">Already have an account? <a href="{{route('login')}}">Login</a></p>
                                         </div>
                                         <form method="POST" action="{{ route('register') }}">
+                                            @csrf
+
+
                                             <div class="form-group">
-                                                <input type="text" required="" id="username" name="username" placeholder="Username" />
+                                                <input type="text" id="name" required="" name="name" placeholder="Username" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" required="" id="email" name="email" placeholder="Email" />
+                                                <input type="email" id="email" required="" name="email" placeholder="Email" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" type="password" id="password" name="password" placeholder="Password" />
+                                                <input required="" id="password" type="password" name="password" placeholder="Password" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" />
+                                                <input required="" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm password" />
                                             </div>
-                                           
-                                            
+
+
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
@@ -73,6 +76,7 @@
                                             <div class="form-group mb-30">
                                                 <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">Submit &amp; Register</button>
                                             </div>
+                                            <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p>
                                         </form>
                                     </div>
                                 </div>
@@ -103,7 +107,7 @@
     @include('frontend.body.footer')
 
     <!-- Vendor JS-->
-   <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/bootstrap.bundle.min.js') }}"></script>

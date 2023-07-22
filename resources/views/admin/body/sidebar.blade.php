@@ -116,6 +116,20 @@
                 </li>
             </ul>
         </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Orders Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('pending.order')}}"><i class="bx bx-right-arrow-alt"></i>Pending Orders</a>
+                </li>
+        
+            </ul>
+        </li>
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='lni lni-gallery'></i>

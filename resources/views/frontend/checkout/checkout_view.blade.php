@@ -272,14 +272,14 @@
   			});
   		});
 
-
   		// Show State Data 
         
   		$(document).ready(function(){
   			$('select[name="district_id"]').on('change', function(){
   				var district_id = $(this).val();
+                console.log(district_id);
   				if (district_id) {
-                     function district(){
+                    
   					$.ajax({
   						url: "{{ url('/state-get/ajax') }}/"+district_id,
   						type: "GET",
@@ -293,7 +293,7 @@
   						},
 
   					});
-                    }
+                    
   				} else {
   					alert('danger');
   				}
