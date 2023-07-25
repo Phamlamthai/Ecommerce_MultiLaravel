@@ -71,7 +71,7 @@
             </ul>
         </li>
 
-         <li>
+        <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-fresh-juice'></i>
                 </div>
@@ -126,7 +126,12 @@
             <ul>
                 <li> <a href="{{route('pending.order')}}"><i class="bx bx-right-arrow-alt"></i>Pending Orders</a>
                 </li>
-        
+                <li> <a href="{{ route('admin.confirmed.order') }}"><i class="bx bx-right-arrow-alt"></i>Confirmed Order</a>
+                </li>
+                <li> <a href="{{ route('admin.processing.order') }}"><i class="bx bx-right-arrow-alt"></i>Processing Order</a>
+                </li>
+                <li> <a href="{{ route('admin.delivered.order') }}"><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
+                </li>
             </ul>
         </li>
 

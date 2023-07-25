@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\CartController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 
@@ -33,9 +35,9 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 
@@ -52,6 +54,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+// Route::post('/auth/register', [RegisteredUserController::class, 'store'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register'); //Sai do route cấu hình nên không gửi post được
 
 
 //Middleware start on admin
@@ -138,7 +142,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
      // Shipping Division All Route 
-     Route::controller(ShippingAreaController::class)->group(function () {
+    Route::controller(ShippingAreaController::class)->group(function () {
         Route::get('/all/division', 'AllDivision')->name('all.division');
         Route::get('/add/division', 'AddDivision')->name('add.division');
         Route::post('/store/division', 'StoreDivision')->name('store.division');
@@ -148,7 +152,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
      // Shipping District All Route 
-     Route::controller(ShippingAreaController::class)->group(function () {
+    Route::controller(ShippingAreaController::class)->group(function () {
         Route::get('/all/district', 'AllDistrict')->name('all.district');
         Route::get('/add/district', 'AddDistrict')->name('add.district');
         Route::post('/store/district', 'StoreDistrict')->name('store.district');
@@ -170,20 +174,20 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
      // Admin Order All Route 
-     Route::controller(OrderController::class)->group(function () {
+    Route::controller(OrderController::class)->group(function () {
         Route::get('/pending/order', 'PendingOrder')->name('pending.order');
         Route::get('/admin/order/details/{order_id}', 'AdminOrderDetails')->name('admin.order.details');
 
-        // Route::get('/admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
+        Route::get('/admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
 
-        // Route::get('/admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
+        Route::get('/admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
 
-        // Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
+        Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
 
-        // Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
-        // Route::get('/confirm/processing/{order_id}', 'ConfirmToProcess')->name('confirm-processing');
+        Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+        Route::get('/confirm/processing/{order_id}', 'ConfirmToProcess')->name('confirm-processing');
 
-        // Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
+        Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
 
         // Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
     });
@@ -276,23 +280,23 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     });
 
 
-    // // User Dashboard All Route 
-    // Route::controller(AllUserController::class)->group(function () {
-    //     Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
-    //     Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+    // User Dashboard All Route 
+    Route::controller(AllUserController::class)->group(function () {
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
 
-    //     Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
 
-    //     Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
-    //     Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
+        // Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
 
-    //     Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
+        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
 
-    //     Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
+        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
 
     //     // Order Tracking 
     //     Route::get('/user/track/order', 'UserTrackOrder')->name('user.track.order');
     //     Route::post('/order/tracking', 'OrderTracking')->name('order.tracking');
-    // });
+    });
 }); 
 // end group User middleware

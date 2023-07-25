@@ -34,7 +34,6 @@
                                         <br>
                                         <img id="showImage" src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo):url('upload/no_image.jpg') }}" alt="User" class="rounded-circle p-1 bg-primary" width="110">
 
-
                                     </div>
                                     <div class="card-body">
                                         <p>
